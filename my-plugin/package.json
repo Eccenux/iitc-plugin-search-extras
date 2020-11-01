@@ -1,17 +1,19 @@
 {
-	"name": "iitc-plugin--nux-termplate",
+	"name": "iitc-plugin-search-extras",
 	"version": "0.0.1",
-	"description": "[0.0.1] Nux template",
+	"description": "[0.0.1] Search extras for FS puzzles",
 	"author": "Eccenux",
 	"license": "MIT",
 	"main": "index.js",
 	"monkeyscript": {
 		"meta": {
-			"name": "IITC plugin: Nux termplate",
+			"name": "IITC plugin: Search extras for FS puzzles",
 			"category": "Misc",
-			"id": "iitc-plugin--nux-termplate",
+			"id": "iitc-plugin-search-extras",
 			"namespace": "pl.enux.iitc",
-			"grant": ["none"],
+			"grant": [
+				"none"
+			],
 			"match": [
 				"https://*.ingress.com/intel*",
 				"http://*.ingress.com/intel*",

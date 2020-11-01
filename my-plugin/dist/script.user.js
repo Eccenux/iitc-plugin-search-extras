@@ -1,11 +1,11 @@
 // ==UserScript==
 // @author      Eccenux
-// @name        IITC plugin: Nux termplate
-// @id          iitc-plugin--nux-termplate
+// @name        IITC plugin: Search extras for FS puzzles
+// @id          iitc-plugin-search-extras
 // @category    Misc
 // @namespace   pl.enux.iitc
 // @version     0.0.1
-// @description [0.0.1] Nux template
+// @description [0.0.1] Search extras for FS puzzles
 // @match       https://*.ingress.com/intel*
 // @match       http://*.ingress.com/intel*
 // @match       https://*.ingress.com/mission/*
