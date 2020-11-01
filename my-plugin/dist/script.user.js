@@ -166,6 +166,16 @@ class AccentLessSearch extends BaseSearch {
 			}
 		});
 	}
+
+	/**
+	 * Transform term/title.
+	 * 
+	 * Create string transliterated to accent-less.
+	 * https://stackoverflow.com/a/51874002/333296
+	 */
+	transform(string) {
+		return string.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+	}	
 }
 /* global addHook, ExactSearch, AccentLessSearch */
 
