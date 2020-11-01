@@ -1,14 +1,14 @@
 ﻿/* eslint-disable no-undef */
 
-// WARNING!!! Change `examplePluginCodeName` to a unique code name of the plugin.
+// WARNING!!! Change `puzzleSearchExtras` to a unique code name of the plugin.
 
-let myPlugin = new MyPlugin('examplePluginCodeName');
+let myPlugin = new MyPlugin('puzzleSearchExtras');
 
 // ensure plugin framework is there, even if iitc is not yet loaded
 if(typeof window.plugin !== 'function') window.plugin = function() {};
 
 //use own namespace for plugin
-window.plugin.examplePluginCodeName = myPlugin;
+window.plugin.puzzleSearchExtras = myPlugin;
 
 //////////////////////////////////////////////////////////////////////
 //WRAPPER START //////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ window.plugin.examplePluginCodeName = myPlugin;
  * IITC plugin wrapper.
  * 
  * Note! The `wrapper` is injected directly to the Ingress Intel web page.
- * That is why you need to use `window.plugin.examplePluginCodeName` at least for hooks setup.
+ * That is why you need to use `window.plugin.puzzleSearchExtras` at least for hooks setup.
  */
 function wrapper(plugin_info) {
 
@@ -30,8 +30,8 @@ function wrapper(plugin_info) {
 	 * See notes for the wrapper!
 	 */
 	function setup() {
-		console.log('examplePluginCodeName - init')
-		window.plugin.examplePluginCodeName.setup();
+		console.log('puzzleSearchExtras - init')
+		window.plugin.puzzleSearchExtras.setup();
 	}
 
 	//PLUGIN END /////////////////////////////////////////////////////////
