@@ -5,7 +5,7 @@
 // @category    Misc
 // @namespace   pl.enux.iitc
 // @version     0.0.1
-// @description [0.0.1] Search extras for FS puzzles
+// @description [0.0.1] Extras portal-search types mostly for FS puzzles
 // @match       https://*.ingress.com/intel*
 // @match       http://*.ingress.com/intel*
 // @match       https://*.ingress.com/mission/*
