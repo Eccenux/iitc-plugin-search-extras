@@ -26,7 +26,11 @@ function lessTask(cb) {
 function buildTask(cb) {
      
 	gulp.src([
-		'src/**/!(index)*.js',	// all .js files EXCEPT index
+		//'src/**/!(index)*.js',	// all .js files EXCEPT index
+		'src/BaseSearch.js',
+		'src/ExactSearch.js',
+		'src/AccentLessSearch.js',
+		'src/MyPlugin.js',
 		'src/index.js',		// index at the end
 	])
 		.pipe(concat("script.user.js"))

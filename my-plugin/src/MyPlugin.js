@@ -1,4 +1,4 @@
-/* global addHook, ExactSearch */
+/* global addHook, ExactSearch, AccentLessSearch */
 
 /**
  * Main plugin class.
@@ -18,5 +18,12 @@ class MyPlugin {
 			iitcExactSearch.find(query);
 		}
 		addHook('search', exactSearch);		
+
+		// add new exact search
+		var iitcAccentLessSearch = new AccentLessSearch();
+		function accentLessSearch(query) {
+			iitcAccentLessSearch.find(query);
+		}
+		addHook('search', accentLessSearch);
 	}
 }
