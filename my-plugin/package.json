@@ -1,7 +1,7 @@
 {
 	"name": "iitc-plugin-search-extras",
-	"version": "0.0.1",
-	"description": "[0.0.1] Extras portal-search types mostly for FS puzzles",
+	"version": "0.0.2",
+	"description": "[0.0.2] Extras portal-search types mostly for FS puzzles",
 	"author": "Eccenux",
 	"license": "MIT",
 	"main": "index.js",

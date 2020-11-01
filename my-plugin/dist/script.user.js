@@ -4,8 +4,8 @@
 // @id          iitc-plugin-search-extras
 // @category    Misc
 // @namespace   pl.enux.iitc
-// @version     0.0.1
-// @description [0.0.1] Extras portal-search types mostly for FS puzzles
+// @version     0.0.2
+// @description [0.0.2] Extras portal-search types mostly for FS puzzles
 // @match       https://*.ingress.com/intel*
 // @match       http://*.ingress.com/intel*
 // @match       https://*.ingress.com/mission/*
@@ -15,15 +15,13 @@
 // @grant       none
 // ==/UserScript==
 
-/* global portals, $, zoomToAndShowPortal, renderPortalDetails, map */
+/* global zoomToAndShowPortal, renderPortalDetails, map */
 
 /**
- * IITC exact search
- * 
- * Adds exact matches with "==" in title.
+ * IITC search
  */
 // eslint-disable-next-line no-unused-vars
-class ExactSearch {
+class BaseSearch {
 	constructor() {
 		this.svg = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="12" height="12" version="1.1">
 			<g style="fill:white;stroke:none">
@@ -33,34 +31,52 @@ class ExactSearch {
 			</g>
 		</svg>`;
 		this.icon = 'data:image/svg+xml;base64,' + btoa(this.svg);
+		/**
+		 * Found item description.
+		 * Override `addResult` for more advanced desc.
+		 */
+		this.description = 'Extra search';
+		/**
+		 * Prefix of title of a found item.
+		 * Override `addResult` for more advanced transform.
+		 */
+		this.titlePrefix = '';
 	}
 
+	/**
+	 * Find portals.
+	 * @param {Object} query IITC query object (`query.term` is the main search term).
+	 */
 	find(query) {
-		var term = query.term;
-		console.log('exact search', query);
-
-		$.each(portals, (guid, portal) => {
-			var data = portal.options.data;
-			if (!data.title)
-				return;
-	
-			if (data.title == term) {
-				this.addResult(query, guid, portal);
-			}
-		});
+		/* when found use:
+			this.addResult(query, guid, portal);
+		*/
 	}
 
+	/**
+	 * Add found item to search results.
+	 * 
+	 * @param {Object} query IITC query object.
+	 * @param {String} guid Portal GUID.
+	 * @param {Object} portal Portal data (from `portals`).
+	 */
 	addResult(query, guid, portal) {
 		var data = portal.options.data;
 		query.addResult({
-			title: '== ' + data.title,
-			description: 'Exact match',
+			title: this.titlePrefix + data.title,
+			description: this.description,
 			position: portal.getLatLng(),
 			icon: this.icon,
 			onSelected: this.onSelect(guid, portal),
 		});
 	}
 
+	/**
+	 * Standard select action.
+	 * 
+	 * @param {String} guid Portal GUID.
+	 * @param {Object} portal Portal data (from `portals`).
+	 */
 	onSelect(guid, portal) {
 		return function (result, event) {
 			if (event.type == 'dblclick') {
@@ -74,6 +90,40 @@ class ExactSearch {
 			}
 			return true;
 		};
+	}
+}
+/* global portals, $, BaseSearch */
+
+/**
+ * IITC exact search
+ * 
+ * Adds exact matches with "==" in title.
+ */
+// eslint-disable-next-line no-unused-vars
+class ExactSearch extends BaseSearch {
+	constructor() {
+		super();
+		this.description = 'Exact match';
+		this.titlePrefix = '== ';
+	}
+
+	/**
+	 * Find portals.
+	 * @param {Object} query IITC query object (`query.term` is the main search term).
+	 */
+	find(query) {
+		var term = query.term;
+		console.log('exact search', query);
+
+		$.each(portals, (guid, portal) => {
+			var data = portal.options.data;
+			if (!data.title)
+				return;
+	
+			if (data.title == term) {
+				this.addResult(query, guid, portal);
+			}
+		});
 	}
 }
 /* global addHook, ExactSearch */
